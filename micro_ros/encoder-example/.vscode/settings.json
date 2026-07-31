@@ -1,0 +1,8 @@
+{
+    "idf.currentSetup": "/home/alvaro-medina/.espressif/v5.5/esp-idf",
+    "idf.port": "/dev/ttyUSB0",
+    "idf.openOcdConfigs": [
+        "board/esp32-wrover-kit-3.3v.cfg"
+    ],
+    "idf.flashType": "UART"
+}
