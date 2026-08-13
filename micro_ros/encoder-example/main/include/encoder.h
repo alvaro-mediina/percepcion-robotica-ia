@@ -2,6 +2,7 @@
 #define ENCODER_H
 
 #include "esp_err.h"
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,6 +34,10 @@ esp_err_t encoder_stop(void);
  * @brief Inicia o reanuda el contador PCNT.
  */
 esp_err_t encoder_start(void);
+
+esp_err_t encoder_get_position(int64_t *position);
+
+esp_err_t encoder_get_speed_rpm(float *rpm);
 
 #ifdef __cplusplus
 }

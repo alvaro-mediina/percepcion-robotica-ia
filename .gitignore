@@ -1,0 +1,21 @@
+# ESP-IDF
+build/
+sdkconfig
+sdkconfig.old
+
+# Componente externo de micro-ROS
+micro_ros/encoder-example/components/
+
+# ROS 2
+install/
+log/
+__pycache__/
+*.pyc
+
+# Editor
+.vscode/
+
+# ROS 2 workspace
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
