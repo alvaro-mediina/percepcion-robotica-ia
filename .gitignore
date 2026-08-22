@@ -19,3 +19,5 @@ __pycache__/
 ros2_ws/build/
 ros2_ws/install/
 ros2_ws/log/
+# Historiales de prueba (encoder/potenciometro)
+percepcion_ros2/historial_*.csv

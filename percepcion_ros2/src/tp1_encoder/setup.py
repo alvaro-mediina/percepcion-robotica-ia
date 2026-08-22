@@ -25,6 +25,7 @@ setup(
     entry_points={
         'console_scripts': [
             "encoder = tp1_encoder.encoder:main",
+            "potenciometro = tp1_encoder.potenciometro:main",
         ],
     },
 )
