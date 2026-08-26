@@ -53,9 +53,13 @@ std_msgs__msg__Float32 msg_pot_posicion_acond;
 std_msgs__msg__Float32 msg_pot_voltaje_crudo;
 std_msgs__msg__Float32 msg_pot_posicion_crudo;
 
-void timer_callback(rcl_timer_t *timer, int64_t last_call_time)
+void timer_callback(
+    rcl_timer_t *timer,
+    int64_t last_call_time,
+    unsigned int missed_calls)
 {
     RCLC_UNUSED(last_call_time);
+    RCLC_UNUSED(missed_calls);
 
     if (timer == NULL) {
         return;
@@ -67,12 +71,17 @@ void timer_callback(rcl_timer_t *timer, int64_t last_call_time)
     float pct_acond = mv_a_posicion_pct(mv_acond);
     float pct_cruda = mv_a_posicion_pct(mv_cruda);
 
-    printf("Cruda: %d mV (%.1f%%)  |  Acondicionada: %d mV (%.1f%%)\n",
-        mv_cruda, pct_cruda, mv_acond, pct_acond);
+    printf(
+        "Cruda: %d mV (%.1f%%) | Acondicionada: %d mV (%.1f%%)\n",
+        mv_cruda,
+        pct_cruda,
+        mv_acond,
+        pct_acond
+    );
 
-    // NUEVO: cargar y publicar los 4 mensajes del potenciómetro
-    msg_pot_voltaje_acond.data = mv_acond / 1000.0f;   // mV -> V
+    msg_pot_voltaje_acond.data = mv_acond / 1000.0f;
     msg_pot_posicion_acond.data = pct_acond;
+
     msg_pot_voltaje_crudo.data = mv_cruda / 1000.0f;
     msg_pot_posicion_crudo.data = pct_cruda;
 

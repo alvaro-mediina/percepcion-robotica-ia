@@ -9,7 +9,7 @@
 
 static const char *TAG_POT = "POTENCIOMETRO";
 
-#define ADC_UNIT_USADA  ADC_UNIT_1
+#define ADC_UNIT_USADA  ADC_UNIT_1 
 #define ADC_ATEN        ADC_ATTEN_DB_12
 
 static adc_oneshot_unit_handle_t adc_handle;
@@ -44,7 +44,7 @@ void pot_adc_init(void)
     }
 }
 
-int adc_read_mv(adc_channel_t canal)
+int adc_read_mv_filtrado(adc_channel_t canal)
 {
     int raw = 0;
     ESP_ERROR_CHECK(adc_oneshot_read(adc_handle, canal, &raw));
