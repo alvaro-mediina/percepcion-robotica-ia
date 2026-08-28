@@ -11,7 +11,7 @@ class AS5600(Node):
 
         # Suscripcion
         self.sub_raw_angle = self.create_subscription(Int64, 'as5600/raw_angle', self.raw_angle, 10)
-        self.sub_angle = self.subscription(Float32, 'as5600/angle', self.angle, 10)
+        self.sub_angle = self.create_subscription(Float32, 'as5600/angle', self.angle, 10)
 
         # Valor por defecto
         self.current_raw_angle = 0
@@ -32,7 +32,7 @@ class AS5600(Node):
         self.current_raw_angle = msg.data
 
     def angle(self, msg):
-        self.angle = msg.data
+        self.current_angle = msg.data
 
     def log_data(self):
         stamp = self.get_clock().now().to_msg()
@@ -42,7 +42,7 @@ class AS5600(Node):
         self.csv_file.flush()
 
         # Muestra en la terminal
-        self.get_logger().info(f'Ángulo crudo: {self.current_raw_angle:.2f} | Ángulo: {self.current_angle}')
+        self.get_logger().info(f'Ángulo crudo: {self.current_raw_angle:.2f} | Ángulo: {self.current_angle:.2f}')
 
     def destroy_node(self):
         self.csv_file.close()

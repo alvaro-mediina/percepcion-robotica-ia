@@ -186,7 +186,9 @@ float as5600_raw_to_degrees(uint16_t raw_angle)
 
 /*
  * Lee STATUS (0x0B)
+ *
  */
+
 esp_err_t as5600_read_status(uint8_t *status)
 {
     if (status == NULL) {
@@ -206,6 +208,7 @@ esp_err_t as5600_read_status(uint8_t *status)
  *
  * MD = Magnet Detected
  */
+
 bool as5600_magnet_detected(uint8_t status)
 {
     return (status & (1U << 5)) != 0;

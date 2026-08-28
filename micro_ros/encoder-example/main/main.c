@@ -166,7 +166,9 @@ void micro_ros_task(void *arg)
     rcl_init_options_t init_options =
         rcl_get_zero_initialized_init_options();
 
-
+    // -------------------------
+    // Init options
+    // -------------------------
     RCCHECK(
         rcl_init_options_init(
             &init_options,
@@ -174,7 +176,19 @@ void micro_ros_task(void *arg)
         )
     );
 
+    // -------------------------
+    // ROS Domain ID
+    // -------------------------
+    RCCHECK(
+        rcl_init_options_set_domain_id(
+            &init_options,
+            10
+        )
+    );
 
+    // -------------------------
+    // Configuracion del Agent
+    // -------------------------
     RCCHECK(
         rmw_uros_options_set_udp_address(
             CONFIG_MICRO_ROS_AGENT_IP,
@@ -185,7 +199,9 @@ void micro_ros_task(void *arg)
         )
     );
 
-
+    // -------------------------
+    // Inicializar soporte micro-ROS
+    // -------------------------
     RCCHECK(
         rclc_support_init_with_options(
             &support,
@@ -196,11 +212,9 @@ void micro_ros_task(void *arg)
         )
     );
 
-
     // -------------------------
     // Nodo
     // -------------------------
-
     rcl_node_t node;
 
     RCCHECK(
@@ -212,11 +226,9 @@ void micro_ros_task(void *arg)
         )
     );
 
-
     // -------------------------
     // Publisher RAW
     // -------------------------
-
     RCCHECK(
         rclc_publisher_init_default(
             &publisher_raw_angle,
@@ -230,11 +242,9 @@ void micro_ros_task(void *arg)
         )
     );
 
-
     // -------------------------
     // Publisher grados
     // -------------------------
-
     RCCHECK(
         rclc_publisher_init_default(
             &publisher_angle,
@@ -248,11 +258,9 @@ void micro_ros_task(void *arg)
         )
     );
 
-
     // -------------------------
     // Timer
     // -------------------------
-
     rcl_timer_t timer;
 
     RCCHECK(
@@ -264,11 +272,9 @@ void micro_ros_task(void *arg)
         )
     );
 
-
     // -------------------------
     // Executor
     // -------------------------
-
     rclc_executor_t executor;
 
     RCCHECK(
@@ -287,15 +293,12 @@ void micro_ros_task(void *arg)
         )
     );
 
-
     ESP_LOGI(
         TAG,
         "micro-ROS listo. Publicando datos del AS5600..."
     );
 
-
     while (1) {
-
         rclc_executor_spin_some(
             &executor,
             RCL_MS_TO_NS(100)

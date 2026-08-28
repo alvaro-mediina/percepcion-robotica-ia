@@ -25,7 +25,8 @@ setup(
     entry_points={
         'console_scripts': [
             "encoder = tp1_encoder.encoder:main",
-            "potenciometro = tp1_encoder.potenciometro:main",
+            "potenciometro = tp2_potenciometro.potenciometro:main",
+            "as5600 = tp3_as5600.as5600:main",
         ],
     },
 )
