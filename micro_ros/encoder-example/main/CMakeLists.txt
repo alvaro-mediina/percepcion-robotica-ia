@@ -1,9 +1,9 @@
 idf_component_register(
     SRCS
         "encoder.c"
-        "main.c"
-        "potenciometro.c"
         "as5600.c"
+        "potenciometro.c"
+        "main.c"
 
     INCLUDE_DIRS
         "."
