@@ -26,6 +26,7 @@ setup(
         'console_scripts': [
             "encoder = tp1_encoder.encoder:main",
             "potenciometro = tp1_encoder.potenciometro:main",
+            "as5600 = tp1_encoder.as5600:main",
         ],
     },
 )
