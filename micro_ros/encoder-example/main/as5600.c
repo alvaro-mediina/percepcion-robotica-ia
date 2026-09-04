@@ -168,6 +168,33 @@ esp_err_t as5600_read_raw_angle(uint16_t *raw_angle)
     return ESP_OK;
 }
 
+esp_err_t as5600_read_angle(uint16_t *angle)
+{
+    if (angle == NULL) {
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    uint8_t data[2];
+
+    esp_err_t ret =
+        as5600_read_register(
+            AS5600_REG_ANGLE,
+            data,
+            2
+        );
+
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Error leyendo ANGLE");
+        return ret;
+    }
+
+    *angle =
+        ((uint16_t)(data[0] & 0x0F) << 8)
+        | data[1];
+
+    return ESP_OK;
+}
+
 
 /*
  * Convierte:

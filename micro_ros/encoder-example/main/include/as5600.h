@@ -11,12 +11,15 @@
 // Registros que vamos a utilizar
 #define AS5600_REG_STATUS     0x0B
 #define AS5600_REG_RAW_ANGLE  0x0C
+#define AS5600_REG_ANGLE      0x0E
 
 // Inicializa el bus I2C
 esp_err_t as5600_init(void);
 
 // Lee la cuenta digital de 12 bits: 0 ... 4095
 esp_err_t as5600_read_raw_angle(uint16_t *raw_angle);
+
+esp_err_t as5600_read_angle(uint16_t *angle);
 
 // Convierte la cuenta digital a grados
 float as5600_raw_to_degrees(uint16_t raw_angle);
