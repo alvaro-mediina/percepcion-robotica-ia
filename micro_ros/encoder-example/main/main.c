@@ -192,7 +192,7 @@ void micro_ros_task(void *arg)
     // ---- Timer único, 100ms ----
     rcl_timer_t timer;
     RCCHECK(rclc_timer_init_default(
-        &timer, &support, RCL_MS_TO_NS(100), timer_callback));
+        &timer, &support, RCL_MS_TO_NS(31), timer_callback));
 
     // ---- Executor ----
     rclc_executor_t executor;
